@@ -11,16 +11,17 @@ canvas.height = window.innerHeight;
 
 //world contraints
 const world_height = 100;
-const world_width = world_height;
 
 //sets the tile size relative to the screen height 
 tile_size = Math.round(canvas.height/world_height)-1;
 
+world_width = Math.round(canvas.width/tile_size)-1;
+
 //makes a empty array to store the world on the current frame
-world= Array.from({ length: world_height}, () => Array(world_width).fill(0));
+world= Array.from({ length: world_width}, () => Array(world_height).fill(0));
 
 //makes a empty array to store the world on the next frame
-swap_world= Array.from({ length: world_height}, () => Array(world_width).fill(0));
+swap_world= Array.from({ length: world_width}, () => Array(world_height).fill(0));
 
 //function that makes a randomly generated world
 function make_world() {
@@ -102,4 +103,12 @@ window.addEventListener("resize", () => {
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 	tile_size = Math.round(canvas.height/world_height)-1;
+	world_width = Math.round(canvas.width/tile_size)-1;
+
+	//makes a empty array to store the world on the current frame
+	world= Array.from({ length: world_width}, () => Array(world_height).fill(0));
+
+	//makes a empty array to store the world on the next frame
+	swap_world= Array.from({ length: world_width}, () => Array(world_height).fill(0));
+	make_world();
 });
